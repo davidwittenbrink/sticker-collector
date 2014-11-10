@@ -1,0 +1,106 @@
+<div ng-show="loggedIn()">
+    <nav>
+    <a href="#/" ng-class="getTabClasses('#/')">By sticker</a>
+    <a href="#/friends" ng-class="getTabClasses('#/friends')">By friends</a>
+        </nav>
+    <div class="settings">
+        <a href="#/settings">
+            <img src='/static/settings.svg' alt="Settings" />
+        </a>
+    </div>
+    <div id="view-wrapper">
+        <div>
+            <div class="number-of-collected-doubles">{{ nrOfCollected() || 0 }} Collected | {{ nrOfDoubles() || 0 }} Doubles</div>
+            <div class="search">
+                Search: <input id="sticker-search" placeholder="Nr." ng-model="searchFilter" type="number"/>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div ng-show="pendingGetAllStickers" class="center-text getting-stickers">
+            <img src="/static/ajax-loader.gif" alt="Loading" />
+            <div>Getting your stickers... </div>
+        </div>
+        <div ng-hide="pendingGetAllStickers">
+        <div class="table-header-row center-text">
+            <div class="pending-http-column"></div>
+            <div class="sticker-nr-column center-text">Nr.</div>
+            <div class="checkbox-column center-text">Collected</div>
+            <div class="checkbox-column center-text">Double</div>
+            <div class="friends-column center-text">Who has it?</div>
+        </div>
+        <div infinite-scroll="increaseLimit()" infinite-scroll-distance="1">
+            
+            <div class="table-row" ng-repeat="sticker in stickers | filter:stickerFilter | limitTo:limit">
+                <div>
+                    <div class="pending-http-column">
+                        <img alt="Loading sticker {{sticker.stickerNr}}" 
+                             ng-show="stickerPendingHTTP[sticker.stickerNr]" 
+                             src="/static/ajax-loader.gif" />
+                    </div>
+                    <div class="sticker-nr-column center-text">{{ sticker.stickerNr }}</div>
+                    <div class="checkbox-column center-text">
+                        <input type="checkbox"
+                               value="{{ sticker.stickerNr }}" 
+                               ng-click="collectedCheckboxClicked($event)" 
+                               ng-checked="sticker.collected"/>
+                    </div>
+                    <div class="checkbox-column center-text">
+                        <input type="checkbox" 
+                               value="{{ sticker.stickerNr }}"
+                               ng-click="doubleCheckboxClicked($event)"
+                               ng-checked="sticker.isDouble"/>
+                    </div>
+                    <div class="friends-column">
+                        <div class="friends-column-half">
+                            <img ng-repeat="p in sticker.possibleSwappers"
+                                 ng-src="{{ fbFriends[p].picture.data.url }}"
+                                 class="small-profile-pic"
+                                 alt="Profile picture of {{ fbFriends[p].name }}"/>
+                        </div>
+                        <div class="friends-column-half">
+                            <div role="button"
+                                 ng-click="fbFriendSwappers($event, sticker.stickerNr)" 
+                                 class="load-friend-swappers">
+                                <span>Show all</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+                <div ng-show="sticker.stickerNr === lastClickedStickerNr">
+                    <div class="center-text"
+                         ng-show="swapperFriends.length === 0 && !loadingSwapperFriends">
+                        None of your friends have this sticker.
+                    </div>
+                    <div class="swaps-table" ng-hide="swapperFriends.length === 0 && !loadingSwapperFriends">
+                        <div class="swaps-table-th">
+                            <div class="profile-pic-column"></div>
+                            <div class="grey center-text swaps-table-name-column">Name</div>
+                            <div class="grey center-text swaps-table-needs-column">Needs from you</div>
+                        </div>
+                        <div ng-repeat="friend in swapperFriends" class="swaps-table-tr">
+                            <div class="profile-pic-column">
+                                <img class="big-profile-pic" 
+                                     ng-src="{{ friend.profileImg }}"
+                                     alt="Profile picture of {{ friend.name }}"/>
+                            </div>
+                            <div class="swaps-table-name-column center-text">
+                                <a ng-href="{{ friend.link }}">{{ friend.name }}</a>
+                            </div>
+                            <div class="center-text swaps-table-needs-column">
+                                {{ friend.needsFromYou.join(', ') || '-' }}
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<div class="not-logged-in center-text" ng-hide="loggedIn()">
+    <div class="small-margin">Sticker Collector makes it easy for you to find this year's World Cup stickers.</div>
+    <div class="small-margin">Mark the stickers you already have and see who of your friends have the ones you're missing.</div>
+    <div class="small-margin">Log in to get started.</div>
+</div>

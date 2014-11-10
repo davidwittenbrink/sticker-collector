@@ -1,0 +1,67 @@
+<div ng-show="loggedIn()">
+    <nav>
+    <a href="#/" ng-class="getTabClasses('#/')">By sticker</a>
+    <a href="#/friends" ng-class="getTabClasses('#/friends')">By friends</a>
+    </nav>
+    <div class="settings">
+        <a href="#/settings">
+            <img src='/static/settings.svg' alt="Settings" />
+        </a>
+    </div>
+    <div id="view-wrapper">
+        <div id="all-friends-table">
+            <div ng-hide="fbFriends" class="center-text">
+                None of your friends are using this app.<br/>
+                <span class="link" ng-click="inviteFriends()">Invite them now!</span>
+            </div>
+            <div ng-repeat="(_, f) in fbFriends">
+                <div ng-if="f.installed">
+                    <div class="all-friends-table-row">
+                        <div class="all-friends-profile-pic-column">
+                            <img width="30" 
+                                 height="30" 
+                                 ng-src="{{ f.picture.data.url }}"
+                                 alt="Profile picture of {{ f.name }}"/>
+                        </div>
+                        <div class="all-friends-name-column">
+                            {{ f.name }}
+                        </div>
+                        <div class="all-friends-load-swaps-column">
+                            <div role="button"
+                                 ng-click="loadPossibleSwaps($event, f.id)" 
+                                 class="load-friend-swappers">
+                                <span>Swaps</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="all-friends-possible-swaps" ng-show="f.id === lastClicked">
+                        <div ng-if="!needsFromYou.length">
+                            {{ f.first_name }} needs no stickers from you.
+                        </div>
+                        <div ng-if="needsFromYou.length">
+                            <span>
+                                {{ f.first_name }} needs {{ needsFromYou.length }} sticker<span ng-if="needsFromYou.length > 1">s</span> from you:
+                                {{ needsFromYou.join(', ') }}.
+                            </span>
+                            
+                        </div>
+                        <div ng-if="!needFromHim.length">
+                            You need no stickers from {{ f.first_name }}.
+                        </div>
+                        <div ng-if="needFromHim.length">
+                            You need {{ needFromHim.length }} sticker<span ng-if="needFromHim.length > 1">s</span> from {{ f.first_name }}: {{ needFromHim.join(', ') }}.
+                        </div>
+                    </div>
+                    
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="not-logged-in center-text" ng-hide="loggedIn()">
+    <div class="small-margin">Sticker Collector makes it easy for you to find this year's World Cup stickers.</div>
+    <div class="small-margin">Mark the stickers you already have and see who of your friends have the ones you're missing.</div>
+    <div class="small-margin">Log in to get started.</div>
+</div>

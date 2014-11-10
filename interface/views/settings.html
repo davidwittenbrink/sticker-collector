@@ -1,0 +1,24 @@
+<div ng-show="loggedIn()">
+    <nav>
+    <a href="#/" ng-class="getTabClasses('#/')">By sticker</a>
+    <a href="#/friends" ng-class="getTabClasses('#/friends')">By friends</a>
+    </nav>
+    <div class="settings">
+        <a href="#/settings">
+            <img src='/static/settings.svg' alt="Settings" />
+        </a>
+    </div>
+    <div id="view-wrapper">
+        <div class="center-text">
+            <div class="settings-button">
+        <button ng-click="revokeFacebookLogin()">Delete Account</button>
+                </div>
+            <div class="settings-button">
+        <button ng-click="resetStickers()">Reset Stickers
+            <img ng-show="pendingStickerReset" src="/static/ajax-loader.gif" />
+        </button>
+                </div>
+            </div>
+        
+        </div>
+</div>

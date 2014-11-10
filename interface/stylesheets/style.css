@@ -1,0 +1,316 @@
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+.settings {
+    background-color: #fff;
+    text-align: right;
+}
+
+.settings-button {
+    margin: 8px;
+}
+
+.settings-button button {
+    width: 40%;
+}
+.settings img {
+    width: 20px;
+    height: 20px;
+    margin: 8px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.getting-stickers {
+    padding: 50px 0;
+}
+
+.grey {
+    font-weight: 400;
+    color: grey;
+}
+
+input[type=number] {
+    text-align: center;
+    margin-left: 8px;
+border: 1px solid lightgrey;
+}
+
+#fb-login {
+    margin-bottom: 20px;
+}
+
+.swaps-table-tr {
+    height: 30px;
+    margin: 5px auto;
+}
+.swaps-table-th {
+    height: 38px;
+}
+.font-weight-400 {
+    font-weight: 400;
+}
+
+.profile-pic-column {
+    width: 10%;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.swaps-table-name-column, .swaps-table-needs-column {
+    display: inline-block;
+    width: 45%;
+    float: left;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.swaps-table {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.friends-column-half {
+    width: 50%;
+    display: inline-block;
+    overflow: hidden;
+    height: 30px;
+    float: left;
+}
+
+.small-profile-pic {
+    width: 20px;
+    height: 20px;
+    margin: 5px 0;
+    padding: 0;
+}
+
+.big-profile-pic {
+    width: 30px;
+    height: 30px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+    -webkit-font-smoothing: antialiased;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+}
+.text-align-right {
+    text-align: right;
+}
+#view-wrapper {
+    background-color: #fff;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin: 0 !important;
+}
+
+#header {
+    /*background: url(/static/fussball.jpg);
+    background-position: bottom;*/
+    padding: 35px;
+}
+
+.all-friends-possible-swaps {
+    margin: 10px 0;
+}
+
+.table-header-row {
+    margin: 16px 0;
+    height: 25px;
+    font-weight: bold;
+    color: gray;
+}
+
+.link {
+    cursor:pointer;
+     color:blue;
+     text-decoration:underline;
+}
+
+.link:hover {
+    text-decoration:none;
+}
+
+.table-row {
+    margin: 5px 0;
+    transition: height 2s;
+}
+
+.small-margin {
+    margin: 5px;
+}
+
+.not-logged-in {
+    padding: 15px;
+background-color: #fff;
+margin-top: 50px;
+    /*box-shadow*/
+    -webkit-box-shadow:0 1px 4px rgba(0,0,0,0.2);
+    -moz-box-shadow:0 1px 4px rgba(0,0,0,0.2);
+    box-shadow:0 1px 4px rgba(0,0,0,0.2);
+    margin:15px auto;
+}
+
+.float-right {
+    float: right;
+}
+
+.tab {
+    display: inline-block;
+    height: 35px;
+    line-height: 35px; /*For vertical centering*/
+    vertical-align: middle;
+    width: 50%;
+    text-align: center;
+    float: left;
+    background-color: #f2f2f2;
+    text-decoration: none;
+    color: black;
+}
+.active-tab {
+    background-color: #fff;
+}
+
+.friend-swapper-table {
+    width: 100%;
+    margin: 5px 0;
+    vertical-align: middle;
+}
+
+.friend-swapper-table th {
+    height: 40px;
+}
+
+
+#wrapper {
+    width: 400px;
+    margin: 0 auto;
+}
+
+#sticker-search {
+    width: 50px;
+}
+
+.load-friend-swappers:hover {
+    background-color: #f2f2f2;
+}
+.load-friend-swappers {
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+    height: 30px;
+    line-height: 30px;
+    background-color: #ececec;
+    cursor: pointer;
+}
+
+.number-of-collected-doubles, .search {
+    float: left;
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    vertical-align: middle;
+}
+
+.number-of-collected-doubles {
+    width: 65%;
+    color: grey;
+}
+
+.search {
+    text-align: right;
+    width: 35%;
+}
+
+.checkbox-column, .sticker-nr-column, .friends-column, .pending-http-column {
+    display: inline-block;
+    margin: 0;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.checkbox-column {
+    width: 23.75%;
+}
+
+.sticker-nr-column {
+    width: 7.5%;
+}
+
+.pending-http-column {
+    width: 5%;
+}
+
+.pending-http-column img {
+    margin: 7px 0;
+    width: 16px;
+    height: 16px;
+}
+
+.friends-column {
+    width: 40%;
+}
+
+.all-friends-table-row {
+    height: 30px;
+    margin: 5px 0;
+}
+
+.all-friends-profile-pic-column {
+    width: 10%;
+    display: inline-block;
+    margin: 0;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.all-friends-name-column, .all-friends-load-swaps-column {
+    display: inline-block;
+    margin: 0;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    width: 45%;
+    overflow: hidden;
+}
+
+
+@media all and (max-width: 410px) {
+  #wrapper {
+    width: 98%;
+    margin: 0 1%;
+  }
+}
+
+
+
+
+
+
+
+
